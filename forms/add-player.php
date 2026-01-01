@@ -1,9 +1,28 @@
 <?php
 
 require_once "../equipe.php";
+require_once "../joueur.php";
 
         $listEquipe = Equipe::getAll();
     
+        if(isset($_POST['submit'])){
+        $name = $_POST['name'];
+        $nationnality = $_POST['nationnality'];
+        $email = $_POST['email'];
+        $equipe = $_POST['equipe'];
+        $role = $_POST['role'];
+        $valeurmarchande = $_POST['valeurmarchande'];
+
+        if(empty($name) || empty($nationnality) || empty($email) || empty($equipe) || empty($role) || empty($valeurmarchande)){
+            echo "<p>Veuillez entrer tous les champs</p>";
+        }else{
+            $joueur = new Joueur($name, $nationnality, $email, $role, $valeurmarchande);
+            $joueur->create();
+
+            header("Location: ../players.php");
+            exit;
+        }
+}
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +91,7 @@ require_once "../equipe.php";
 
             <div class="content-wrapper">
                 <div class="form-container">
-                    <form class="entity-form" action="../players.php" method="post">
+                    <form class="entity-form" action="add-player.php" method="post">
                         <!-- Personal Information Section -->
                         <div class="form-section">
                             <div class="section-header">
@@ -82,12 +101,12 @@ require_once "../equipe.php";
                             <div class="form-grid">
                                 <div class="form-field">
                                     <label for="nom">Nom</label>
-                                    <input type="text" id="nom" name="nom" placeholder="Ex: Mathieu Herbaut" required>
+                                    <input type="text" id="nom" name="name" placeholder="Ex: Mathieu Herbaut" required>
                                 </div>
 
                                 <div class="form-field">
                                     <label for="pseudo">Nationnality</label>
-                                    <input type="text" id="pseudo" name="pseudo" placeholder="Ex: ZywOo" required>
+                                    <input type="text" id="pseudo" name="nationnality" placeholder="Ex: ZywOo" required>
                                 </div>
 
                                 <div class="form-field">
@@ -105,14 +124,14 @@ require_once "../equipe.php";
                                     </select>
                                 </div>
 
-                                <div class="form-field">
+                                <div class="fo  rm-field">
                                     <label for="email">Role *</label>
-                                    <input type="email" id="email" name="role" placeholder="Ex: zywoo@vitality.gg" required>
+                                    <input type="text" id="email" name="role" placeholder="Ex: zywoo@vitality.gg" required>
                                 </div>
 
                                 <div class="form-field">
                                     <label for="valeur_marchande">Valeur marchande (€) *</label>
-                                    <input type="number" id="valeur_marchande" name="valeur_marchande" placeholder="Ex: 2500000" step="1000" min="0" required>
+                                    <input type="number" id="valeur_marchande" name="valeurmarchande" placeholder="Ex: 2500000" step="1000" min="0" required>
                                 </div>
                                 
                             </div>
@@ -122,7 +141,7 @@ require_once "../equipe.php";
                         <div class="form-actions">
                             <button type="button" class="btn-secondary" onclick="window.location.href='../players.php'">Annuler</button>
                             <button type="reset" class="btn-secondary">Réinitialiser</button>
-                            <button type="submit" class="btn-primary">✓ Créer le joueur</button>
+                            <button name="submit" type="submit" class="btn-primary">✓ Créer le joueur</button>
                         </div>
                     </form>
 

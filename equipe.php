@@ -2,7 +2,7 @@
 require_once "person.php";
 require_once "connection.php";
 class Equipe{
-    static ?PDO $con=null;
+    private ?PDO $con=null;
     private ?int $id = null;
     private string $name;
     private float $budget;
@@ -11,7 +11,7 @@ class Equipe{
     public function __construct(string $name,float $budget,string $manager)
     {
         
-        self::$con = Database::getInstance()->getConnection();
+        $this->con = Database::getInstance()->getConnection();
 
         $this->name = $name;
         $this->budget = $budget;
@@ -19,9 +19,9 @@ class Equipe{
     }
 
     public static function getAll(){
-        self::$con = Database::getInstance()->getConnection();
+        $con = Database::getInstance()->getConnection();
         $sqll = "SELECT * FROM equipes";
-        $stmt = self::$con->prepare($sqll);
+        $stmt = $con->prepare($sqll);
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;

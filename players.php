@@ -1,3 +1,7 @@
+<?php
+require_once "joueur.php";
+$playerslist = Joueur::getAll();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -97,15 +101,16 @@
 
                 <!-- Players Grid -->
                 <div class="players-container">
+                    <?php foreach($playerslist as $player) { ?>
                     <div class="player-card-detailed">
                         <div class="player-card-header">
                             <div class="player-avatar-large">ZW</div>
-                            <div class="player-flag-large">🇫🇷</div>
+                            <div class="player-flag-large"></div>
                             <span class="player-status-dot active"></span>
                         </div>
                         <div class="player-card-body">
-                            <h3 class="player-name-large">ZywOo</h3>
-                            <p class="player-email">zywoo@vitality.gg</p>
+                            <h3 class="player-name-large"><?= $player['name'] ?></h3>
+                            <p class="player-email"><?= $player['email'] ?></p>
                             <div class="player-tags">
                                 <span class="tag">AWP</span>
                                 <span class="tag">CS2</span>
@@ -117,7 +122,7 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">2.5M €</span>
+                                    <span class="stat-value-small highlight"><?= $player['valeur_marchande'] ?> €</span>
                                 </div>
                             </div>
                         </div>
@@ -127,223 +132,8 @@
                             <button class="btn-icon-small danger">🗑️</button>
                         </div>
                     </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">CP</div>
-                            <div class="player-flag-large">🇩🇰</div>
-                            <span class="player-status-dot active"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">Caps</h3>
-                            <p class="player-email">caps@g2esports.com</p>
-                            <div class="player-tags">
-                                <span class="tag">Mid</span>
-                                <span class="tag">LoL</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">G2 Esports</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">2.2M €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">TZ</div>
-                            <div class="player-flag-large">🇨🇦</div>
-                            <span class="player-status-dot active"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">TenZ</h3>
-                            <p class="player-email">tenz@sentinels.gg</p>
-                            <div class="player-tags">
-                                <span class="tag">Duelist</span>
-                                <span class="tag">Valorant</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">Sentinels</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">1.8M €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">RK</div>
-                            <div class="player-flag-large">🇸🇪</div>
-                            <span class="player-status-dot active"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">Rekkles</h3>
-                            <p class="player-email">rekkles@karminecorp.fr</p>
-                            <div class="player-tags">
-                                <span class="tag">ADC</span>
-                                <span class="tag">LoL</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">Karmine Corp</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">1.6M €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">S1</div>
-                            <div class="player-flag-large">🇺🇦</div>
-                            <span class="player-status-dot active"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">s1mple</h3>
-                            <p class="player-email">s1mple@navi.gg</p>
-                            <div class="player-tags">
-                                <span class="tag">AWP</span>
-                                <span class="tag">CS2</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">Natus Vincere</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">2.3M €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">FK</div>
-                            <div class="player-flag-large">🇧🇷</div>
-                            <span class="player-status-dot inactive"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">FalleN</h3>
-                            <p class="player-email">fallen@imperial.gg</p>
-                            <div class="player-tags">
-                                <span class="tag">IGL</span>
-                                <span class="tag">CS2</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">Imperial</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">950K €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">FK</div>
-                            <div class="player-flag-large">🇰🇷</div>
-                            <span class="player-status-dot active"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">Faker</h3>
-                            <p class="player-email">faker@t1.gg</p>
-                            <div class="player-tags">
-                                <span class="tag">Mid</span>
-                                <span class="tag">LoL</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">T1</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">3.0M €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">MX</div>
-                            <div class="player-flag-large">🇪🇸</div>
-                            <span class="player-status-dot active"></span>
-                        </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large">Mixwell</h3>
-                            <p class="player-email">mixwell@g2.gg</p>
-                            <div class="player-tags">
-                                <span class="tag">Rifler</span>
-                                <span class="tag">Valorant</span>
-                            </div>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small">G2 Esports</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight">750K €</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="player-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
+                    <?php } ?>
+                    
                 </div>
             </div>
         </main>

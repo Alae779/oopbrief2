@@ -1,3 +1,8 @@
+<?php
+require_once "coach.php";
+$listcoaches = Coach::getAll();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -95,15 +100,16 @@
                 <!-- Coaches Grid -->
                 <div class="coaches-container">
                     <!-- Coach Card 1 -->
+                     <?php foreach($listcoaches as $coach) { ?>
                     <div class="coach-card-detailed">
                         <div class="coach-card-header">
                             <div class="coach-avatar-large">DP</div>
-                            <div class="coach-flag-large">🇸🇪</div>
+                            <div class="coach-flag-large"></div>
                             <span class="coach-status-dot active"></span>
                         </div>
                         <div class="coach-card-body">
-                            <h3 class="coach-name-large">Devilwalk</h3>
-                            <p class="coach-email">devilwalk@fnatic.com</p>
+                            <h3 class="coach-name-large"><?= $coach['name'] ?></h3>
+                            <p class="coach-email"><?= $coach['email'] ?></p>
                             
                             <div class="coach-specialties">
                                 <span class="specialty-badge">CS2</span>
@@ -123,7 +129,7 @@
                                     <span class="info-icon">⏱️</span>
                                     <div>
                                         <span class="info-label">Expérience</span>
-                                        <span class="info-value">8 ans</span>
+                                        <span class="info-value"><?= $coach['annees_experience'] ?> ans</span>
                                     </div>
                                 </div>
                             </div>
@@ -137,15 +143,6 @@
                                 </div>
                             </div>
 
-                            <div class="coach-stats-bar">
-                                <div class="stat-bar-item">
-                                    <span class="stat-bar-label">Win Rate</span>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 68%"></div>
-                                    </div>
-                                    <span class="stat-bar-value">68%</span>
-                                </div>
-                            </div>
                         </div>
                         <div class="coach-card-footer">
                             <button class="btn-icon-small">👁️</button>
@@ -153,306 +150,7 @@
                             <button class="btn-icon-small danger">🗑️</button>
                         </div>
                     </div>
-
-                    <!-- Coach Card 2 -->
-                    <div class="coach-card-detailed">
-                        <div class="coach-card-header">
-                            <div class="coach-avatar-large">ZN</div>
-                            <div class="coach-flag-large">🇰🇷</div>
-                            <span class="coach-status-dot active"></span>
-                        </div>
-                        <div class="coach-card-body">
-                            <h3 class="coach-name-large">Zefa</h3>
-                            <p class="coach-email">zefa@t1.kr</p>
-                            
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">LoL</span>
-                                <span class="specialty-badge">Draft</span>
-                                <span class="specialty-badge">Mental</span>
-                            </div>
-
-                            <div class="coach-info-grid">
-                                <div class="info-item">
-                                    <span class="info-icon">🏆</span>
-                                    <div>
-                                        <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value">T1</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-icon">⏱️</span>
-                                    <div>
-                                        <span class="info-label">Expérience</span>
-                                        <span class="info-value">10 ans</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 Worlds Champion</div>
-                                    <div class="achievement-item">🏆 LCK Winner x3</div>
-                                    <div class="achievement-item">⭐ MSI Champion</div>
-                                </div>
-                            </div>
-
-                            <div class="coach-stats-bar">
-                                <div class="stat-bar-item">
-                                    <span class="stat-bar-label">Win Rate</span>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 75%"></div>
-                                    </div>
-                                    <span class="stat-bar-value">75%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <!-- Coach Card 3 -->
-                    <div class="coach-card-detailed">
-                        <div class="coach-card-header">
-                            <div class="coach-avatar-large">CB</div>
-                            <div class="coach-flag-large">🇺🇸</div>
-                            <span class="coach-status-dot active"></span>
-                        </div>
-                        <div class="coach-card-body">
-                            <h3 class="coach-name-large">Chet</h3>
-                            <p class="coach-email">chet@nrg.gg</p>
-                            
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">Valorant</span>
-                                <span class="specialty-badge">Tactique</span>
-                                <span class="specialty-badge">Anti-strat</span>
-                            </div>
-
-                            <div class="coach-info-grid">
-                                <div class="info-item">
-                                    <span class="info-icon">🏆</span>
-                                    <div>
-                                        <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value">NRG Esports</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-icon">⏱️</span>
-                                    <div>
-                                        <span class="info-label">Expérience</span>
-                                        <span class="info-value">6 ans</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 Masters Winner</div>
-                                    <div class="achievement-item">🏆 VCT Americas</div>
-                                    <div class="achievement-item">⭐ Champions Top 4</div>
-                                </div>
-                            </div>
-
-                            <div class="coach-stats-bar">
-                                <div class="stat-bar-item">
-                                    <span class="stat-bar-label">Win Rate</span>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 71%"></div>
-                                    </div>
-                                    <span class="stat-bar-value">71%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <!-- Coach Card 4 -->
-                    <div class="coach-card-detailed">
-                        <div class="coach-card-header">
-                            <div class="coach-avatar-large">BL</div>
-                            <div class="coach-flag-large">🇩🇰</div>
-                            <span class="coach-status-dot active"></span>
-                        </div>
-                        <div class="coach-card-body">
-                            <h3 class="coach-name-large">Blade</h3>
-                            <p class="coach-email">blade@vitality.fr</p>
-                            
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">CS2</span>
-                                <span class="specialty-badge">Analyse</span>
-                                <span class="specialty-badge">T-Side</span>
-                            </div>
-
-                            <div class="coach-info-grid">
-                                <div class="info-item">
-                                    <span class="info-icon">🏆</span>
-                                    <div>
-                                        <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value">Vitality</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-icon">⏱️</span>
-                                    <div>
-                                        <span class="info-label">Expérience</span>
-                                        <span class="info-value">12 ans</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 Major Champion</div>
-                                    <div class="achievement-item">🏆 IEM Winner x4</div>
-                                    <div class="achievement-item">⭐ BLAST Champion</div>
-                                </div>
-                            </div>
-
-                            <div class="coach-stats-bar">
-                                <div class="stat-bar-item">
-                                    <span class="stat-bar-label">Win Rate</span>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 73%"></div>
-                                    </div>
-                                    <span class="stat-bar-value">73%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <!-- Coach Card 5 -->
-                    <div class="coach-card-detailed">
-                        <div class="coach-card-header">
-                            <div class="coach-avatar-large">YS</div>
-                            <div class="coach-flag-large">🇫🇷</div>
-                            <span class="coach-status-dot inactive"></span>
-                        </div>
-                        <div class="coach-card-body">
-                            <h3 class="coach-name-large">YellOwStaR</h3>
-                            <p class="coach-email">yellowstar@kc.fr</p>
-                            
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">LoL</span>
-                                <span class="specialty-badge">Vision</span>
-                                <span class="specialty-badge">Support</span>
-                            </div>
-
-                            <div class="coach-info-grid">
-                                <div class="info-item">
-                                    <span class="info-icon">🏆</span>
-                                    <div>
-                                        <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value">Karmine Corp</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-icon">⏱️</span>
-                                    <div>
-                                        <span class="info-label">Expérience</span>
-                                        <span class="info-value">5 ans</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 LEC Champion x5</div>
-                                    <div class="achievement-item">🏆 Worlds Semi-Final</div>
-                                    <div class="achievement-item">⭐ All-Star</div>
-                                </div>
-                            </div>
-
-                            <div class="coach-stats-bar">
-                                <div class="stat-bar-item">
-                                    <span class="stat-bar-label">Win Rate</span>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 65%"></div>
-                                    </div>
-                                    <span class="stat-bar-value">65%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
-
-                    <!-- Coach Card 6 -->
-                    <div class="coach-card-detailed">
-                        <div class="coach-card-header">
-                            <div class="coach-avatar-large">GZ</div>
-                            <div class="coach-flag-large">🇧🇷</div>
-                            <span class="coach-status-dot active"></span>
-                        </div>
-                        <div class="coach-card-body">
-                            <h3 class="coach-name-large">guerri</h3>
-                            <p class="coach-email">guerri@loud.gg</p>
-                            
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">Valorant</span>
-                                <span class="specialty-badge">Mentalité</span>
-                                <span class="specialty-badge">Rotation</span>
-                            </div>
-
-                            <div class="coach-info-grid">
-                                <div class="info-item">
-                                    <span class="info-icon">🏆</span>
-                                    <div>
-                                        <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value">LOUD</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-icon">⏱️</span>
-                                    <div>
-                                        <span class="info-label">Expérience</span>
-                                        <span class="info-value">4 ans</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 Champions Winner</div>
-                                    <div class="achievement-item">🏆 Masters x2</div>
-                                    <div class="achievement-item">⭐ VCT Americas</div>
-                                </div>
-                            </div>
-
-                            <div class="coach-stats-bar">
-                                <div class="stat-bar-item">
-                                    <span class="stat-bar-label">Win Rate</span>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 77%"></div>
-                                    </div>
-                                    <span class="stat-bar-value">77%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </main>
