@@ -2,13 +2,17 @@
 
 require_once "connection.php";
 abstract class Person{
-    protected int $id;
     protected string $name;
     protected string $nationnality;
-    protected string $email;
 
-    public function __construct(int $id, string $name, string $nationnality, string $email)
+    public function __construct(string $name, string $nationnality)
     {
+
+    }
+
+    public function _construct($name,$nationnality){
+        $this->name = $name;
+        $this->nationnality = $nationnality;
     }
 }
 

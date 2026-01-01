@@ -1,0 +1,432 @@
+/* Contract Stats Grid */
+.contract-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.contract-stat-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.contract-stat-card:hover {
+    border-color: var(--color-accent-blue);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon-contract {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: 900;
+}
+
+.stat-icon-contract.active {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--color-success);
+    border: 2px solid var(--color-success);
+}
+
+.stat-icon-contract.expiring {
+    background: rgba(255, 170, 0, 0.15);
+    color: var(--color-warning);
+    border: 2px solid var(--color-warning);
+}
+
+.stat-icon-contract.expired {
+    background: rgba(255, 51, 102, 0.15);
+    color: var(--color-danger);
+    border: 2px solid var(--color-danger);
+}
+
+.stat-icon-contract.total {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 212, 255, 0.1));
+    color: var(--color-accent-cyan);
+    border: 2px solid var(--color-accent-blue);
+}
+
+/* Filters */
+.contract-filters {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+/* Contracts List */
+.contracts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Contract Card */
+.contract-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.contract-card:hover {
+    border-color: var(--color-accent-blue);
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+/* Contract Header */
+.contract-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.contract-id {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.id-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.id-value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--color-accent-blue-light);
+    letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--color-success);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.status-badge.warning {
+    background: rgba(255, 170, 0, 0.15);
+    color: var(--color-warning);
+    border: 1px solid rgba(255, 170, 0, 0.3);
+}
+
+.status-badge.expired {
+    background: rgba(255, 51, 102, 0.15);
+    color: var(--color-danger);
+    border: 1px solid rgba(255, 51, 102, 0.3);
+}
+
+/* Contract Body */
+.contract-body {
+    padding: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.contract-section {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.section-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.section-content {
+    flex: 1;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Member Section */
+.member-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.member-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    font-family: var(--font-display);
+    border: 2px solid var(--color-border);
+}
+
+.member-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.member-role {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* Team Section */
+.team-badge-large {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.team-logo-small {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-cyan));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.85rem;
+    font-family: var(--font-display);
+}
+
+.team-name-small {
+    font-weight: 700;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+}
+
+/* Financial Section */
+.financial-section {
+    grid-column: 1 / -1;
+}
+
+.financial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(0, 212, 255, 0.02));
+    border: 1px solid var(--color-accent-blue);
+    border-radius: var(--radius-md);
+}
+
+.financial-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.financial-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.financial-value {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-accent-cyan);
+    font-family: var(--font-display);
+}
+
+/* Dates Section */
+.dates-section {
+    grid-column: 1 / -1;
+}
+
+.dates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.date-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: var(--spacing-sm);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.date-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.date-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.date-value.highlight {
+    color: var(--color-accent-cyan);
+    font-size: 1.1rem;
+}
+
+.date-value.warning {
+    color: var(--color-warning);
+}
+
+.date-value.expiring {
+    color: var(--color-warning);
+}
+
+.date-value.expired {
+    color: var(--color-danger);
+}
+
+/* Contract Footer */
+.contract-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-tertiary);
+    border-top: 1px solid var(--color-border);
+}
+
+.btn-contract-action {
+    padding: 0.75rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-contract-action:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-accent-blue);
+    color: var(--color-accent-blue-light);
+    transform: translateY(-2px);
+}
+
+.btn-contract-action.primary {
+    background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-blue-dark));
+    border: none;
+    color: white;
+}
+
+.btn-contract-action.primary:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.btn-contract-action.danger:hover {
+    background: rgba(255, 51, 102, 0.1);
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+.btn-contract-action.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-contract-action.disabled:hover {
+    transform: none;
+    background: var(--color-bg-card);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contract-card {
+    animation: slideInUp 0.5s ease-out;
+}
+
+.contract-card:nth-child(1) { animation-delay: 0.05s; }
+.contract-card:nth-child(2) { animation-delay: 0.1s; }
+.contract-card:nth-child(3) { animation-delay: 0.15s; }
+.contract-card:nth-child(4) { animation-delay: 0.2s; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .contract-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .financial-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dates-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contract-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contract-filters {
+        flex-direction: column;
+    }
+    
+    .contract-footer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

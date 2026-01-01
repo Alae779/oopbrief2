@@ -1,8 +1,8 @@
 <?php
 
 class Coach extends Person{
-    private $anneesexperience;
-    public function __construct($id, $name, $nationnality, $email, $anneesexperience)
+    private int $anneesexperience;
+    public function __construct(int $id,string $name,string $nationnality,string $email,int $anneesexperience)
     {
     }
 }
