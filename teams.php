@@ -1,5 +1,6 @@
 <?php
 require_once "equipe.php";
+require_once "formater.php";
 $listEquipe = Equipe::getAll();
 ?>
 <!DOCTYPE html>
@@ -98,7 +99,7 @@ $listEquipe = Equipe::getAll();
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Budget</span>
-                                    <span class="info-value highlight"><?= $equ['budget'] ?> €</span>
+                                    <span class="info-value highlight"><?= Formater::currency($equ['budget']) ?></span>
                                 </div>
                             </div>
 
@@ -131,7 +132,7 @@ $listEquipe = Equipe::getAll();
                         </div>
                         <div class="team-footer">
                             <button class="btn-team-action">👁️ Voir</button>
-                            <button class="btn-team-action">✏️ Éditer</button>
+                            <a href="forms/team-edit.php?id=<?= $equ['id'] ?>" class="btn-team-action">✏️ Éditer</a>
                             <button class="btn-team-action danger">🗑️</button>
                         </div>
                     </div>

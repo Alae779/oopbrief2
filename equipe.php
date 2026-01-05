@@ -8,7 +8,7 @@ class Equipe{
     private float $budget;
     private string $manager;
 
-    public function __construct(string $name,float $budget,string $manager)
+    public function __construct(string $name,float $budget,string $manager,?int $id = null)
     {
         
         $this->con = Database::getInstance()->getConnection();
@@ -16,6 +16,7 @@ class Equipe{
         $this->name = $name;
         $this->budget = $budget;
         $this->manager = $manager;
+        $this->id = $id;
     }
 
     public static function getAll(){
@@ -39,6 +40,25 @@ class Equipe{
         ]);
     }
 
+    public function Update(){
+        $sq = "UPDATE equipes SET name = :name, budget = :budget, manager = :manager
+        WHERE id = :id";
+        $stmt = $this->con->prepare($sq);
+        return $stmt->execute([
+            ':name' => $this->name,
+            ':budget' => $this->budget,
+            ':manager' => $this->manager,
+            ':id' => $this->id,
+        ]);
+    }
+
+    public static function getById(int $id): ?array {
+    $con = Database::getInstance()->getConnection();
+    $stmt = $con->prepare("SELECT * FROM equipes WHERE id = :id");
+    $stmt->execute([':id' => $id]);
+    $team = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $team ?: null;
+}
 
 
 }

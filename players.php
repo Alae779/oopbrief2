@@ -1,5 +1,7 @@
 <?php
 require_once "joueur.php";
+require_once "formater.php";
+
 $playerslist = Joueur::getAll();
 ?>
 <!DOCTYPE html>
@@ -122,7 +124,7 @@ $playerslist = Joueur::getAll();
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight"><?= $player['valeur_marchande'] ?> €</span>
+                                    <span class="stat-value-small highlight"><?= Formater::currency($player['valeur_marchande']) ?></span>
                                 </div>
                             </div>
                         </div>
