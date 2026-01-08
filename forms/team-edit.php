@@ -1,5 +1,6 @@
 <?php
 require_once "../equipe.php";
+session_start();
 
 $teamId = $_GET['id'];
 
@@ -10,7 +11,6 @@ if (isset($_POST['submit'])) {
     $budget = $_POST['budget'];
     $manager = $_POST['manager'];
 
-    // Update the team
     $team = new Equipe($name, $budget, $manager, $teamId);
     $team->Update();
     header("Location: ../teams.php");

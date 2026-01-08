@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,19 +23,19 @@
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item active">
+                <a href="indexx.php" class="nav-item active">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item">
+                <a href="playerss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item">
+                <a href="coachess.php" class="nav-item">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item">
+                <a href="teamss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
@@ -46,8 +52,11 @@
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Journalist</p>
                     <p class="user-role">Gestionnaire</p>
+                </div>
+                <div class="team-badge">
+                    <a href="../forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>

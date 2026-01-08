@@ -50,6 +50,9 @@
                     <p class="user-name">Admin</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
+                <div class="team-badge">
+                    <a href="../forms/logout.php">LOG OUT</a>
+                </div>
             </div>
         </aside>
 
@@ -57,9 +60,6 @@
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Gestion des Contrats</h2>
-                <div class="header-actions">
-                    <a href="forms/add-contract.php" class="btn-primary">+ Nouveau Contrat</a>
-                </div>
             </header>
 
             <div class="content-wrapper">

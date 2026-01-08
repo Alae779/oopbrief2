@@ -1,19 +1,22 @@
 <?php
 require_once "../coach.php";
-
+require_once "../equipe.php";
+session_start();
 $listcoaches = Coach::getAll();
+$listEquipe = Equipe::getAll();
 
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
     $nationnality = $_POST['nationnality'];
     $anneesexperience = $_POST['anneesexperience'];
+    $equipeId = $_POST['equipe'];
 
-    if(empty($name) || empty($email) || empty($nationnality) || empty($anneesexperience)){
+    if(empty($name) || empty($email) || empty($nationnality) || empty($anneesexperience) || empty($equipeId)){
         echo "<p>Veuillez entrer tous les champs</p>";
     }
     else{
-        $coach = new Coach($name, $nationnality, $email, $anneesexperience);
+        $coach = new Coach($name, $nationnality, $email, $anneesexperience, $equipeId);
         $coach->create();
 
             header("Location: ../coaches.php");
@@ -114,6 +117,16 @@ if(isset($_POST['submit'])){
                                 <div class="form-field">
                                     <label for="annees_experience">Années d'expérience *</label>
                                     <input type="number" id="annees_experience" name="anneesexperience" placeholder="Ex: 8" min="0" max="30" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="nationalite">Equipe</label>
+                                    <select id="nationalite" name="equipe" required>
+                                        <option value="">Sélectionner...</option>
+                                        <?php foreach($listEquipe as $equ) { ?>
+                                        <option value="<?= $equ['id'] ?>"><?= $equ['name'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -10,6 +10,8 @@ abstract class Person{
         $this->name = $name;
         $this->nationnality = $nationnality;
     }
+
+    abstract public function getAnnualCost(float $salary) :float;
 }
 
 ?>

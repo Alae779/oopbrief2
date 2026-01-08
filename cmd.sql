@@ -29,7 +29,7 @@ CREATE TABLE contrats(
     coach_id INT,
     equipe_id INT,
     salaire DECIMAL(10, 2),
-    date_debut DATE,
+    clause_rachat FLOAT,
     date_fin DATE,
     FOREIGN KEY (joueur_id) REFERENCES joueurs(id),
     FOREIGN KEY (coach_id) REFERENCES coachs(id),

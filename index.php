@@ -1,3 +1,8 @@
+<?php
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -48,6 +53,9 @@
                 <div class="user-info">
                     <p class="user-name">Admin</p>
                     <p class="user-role">Gestionnaire</p>
+                </div>
+                <div class="team-badge">
+                    <a href="../forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>

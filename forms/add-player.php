@@ -2,7 +2,7 @@
 
 require_once "../equipe.php";
 require_once "../joueur.php";
-
+session_start();
         $listEquipe = Equipe::getAll();
     
         if(isset($_POST['submit'])){
@@ -12,11 +12,12 @@ require_once "../joueur.php";
         $equipe = $_POST['equipe'];
         $role = $_POST['role'];
         $valeurmarchande = $_POST['valeurmarchande'];
+        $equipeId = $_POST['equipe'];
 
-        if(empty($name) || empty($nationnality) || empty($email) || empty($equipe) || empty($role) || empty($valeurmarchande)){
+        if(empty($name) || empty($nationnality) || empty($email) || empty($equipeId) || empty($role) || empty($valeurmarchande)){
             echo "<p>Veuillez entrer tous les champs</p>";
         }else{
-            $joueur = new Joueur($name, $nationnality, $email, $role, $valeurmarchande);
+            $joueur = new Joueur($name, $nationnality, $email, $role, $valeurmarchande, $equipeId);
             $joueur->create();
 
             header("Location: ../players.php");
@@ -124,16 +125,16 @@ require_once "../joueur.php";
                                     </select>
                                 </div>
 
-                                <div class="fo  rm-field">
+                                <div class="form-field">
                                     <label for="email">Role *</label>
-                                    <input type="text" id="email" name="role" placeholder="Ex: zywoo@vitality.gg" required>
+                                    <input type="text" id="email" name="role" placeholder="Ex: Attacker" required>
                                 </div>
 
                                 <div class="form-field">
                                     <label for="valeur_marchande">Valeur marchande (€) *</label>
-                                    <input type="number" id="valeur_marchande" name="valeurmarchande" placeholder="Ex: 2500000" step="1000" min="0" required>
+                                    <input type="number" id="valeur_marchande" name="valeurmarchande" placeholder="Ex: 2500000" required>
                                 </div>
-                                
+
                             </div>
                         </div>
 

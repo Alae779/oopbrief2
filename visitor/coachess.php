@@ -1,5 +1,6 @@
 <?php
-require_once "coach.php";
+require_once "../coach.php";
+require_once "../formater.php";
 $listcoaches = Coach::getAll();
 session_start();
 ?>
@@ -9,9 +10,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coachs - Apex Management</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <link rel="stylesheet" href="styles/coaches.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/coaches.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -23,19 +24,19 @@ session_start();
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item">
+                <a href="indexx.php" class="nav-item">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item">
+                <a href="playerss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item active">
+                <a href="coachess.php" class="nav-item active">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item">
+                <a href="teamss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
@@ -52,7 +53,7 @@ session_start();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Journalist</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
@@ -65,9 +66,6 @@ session_start();
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Gestion des Coachs</h2>
-                <div class="header-actions">
-                    <a href="forms/add-coach.php" class="btn-primary">+ Ajouter Coach</a>
-                </div>
             </header>
 
             <div class="content-wrapper">
@@ -111,7 +109,7 @@ session_start();
                             <span class="coach-status-dot active"></span>
                         </div>
                         <div class="coach-card-body">
-                            <h3 class="coach-name-large"><?= $coach['coachname'] ?></h3>
+                            <h3 class="coach-name-large"><?= $coach['name'] ?></h3>
                             <p class="coach-email"><?= $coach['email'] ?></p>
                             
                             <div class="coach-specialties">
@@ -125,7 +123,7 @@ session_start();
                                     <span class="info-icon">🏆</span>
                                     <div>
                                         <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value"><?= $coach['teamname'] ?></span>
+                                        <span class="info-value">Fnatic</span>
                                     </div>
                                 </div>
                                 <div class="info-item">
@@ -149,8 +147,6 @@ session_start();
                         </div>
                         <div class="coach-card-footer">
                             <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
                         </div>
                     </div>
                     <?php } ?>

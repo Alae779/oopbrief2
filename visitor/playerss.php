@@ -1,6 +1,7 @@
 <?php
-require_once "joueur.php";
-require_once "formater.php";
+require_once "../joueur.php";
+require_once "../formater.php";
+
 session_start();
 
 $playerslist = Joueur::getAll();
@@ -11,9 +12,9 @@ $playerslist = Joueur::getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joueurs - Apex Management</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <link rel="stylesheet" href="styles/players.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/players.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,19 +26,19 @@ $playerslist = Joueur::getAll();
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item">
+                <a href="indexx.php" class="nav-item">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item active">
+                <a href="playerss.php" class="nav-item active">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item">
+                <a href="coachess.php" class="nav-item">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item">
+                <a href="teamss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
@@ -54,7 +55,7 @@ $playerslist = Joueur::getAll();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Journalist</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
@@ -67,9 +68,6 @@ $playerslist = Joueur::getAll();
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Gestion des Joueurs</h2>
-                <div class="header-actions">
-                    <a href="forms/add-player.php" class="btn-primary">+ Ajouter Joueur</a>
-                </div>
             </header>
 
             <div class="content-wrapper">
@@ -115,7 +113,7 @@ $playerslist = Joueur::getAll();
                             <span class="player-status-dot active"></span>
                         </div>
                         <div class="player-card-body">
-                            <h3 class="player-name-large"><?= $player['playername'] ?></h3>
+                            <h3 class="player-name-large"><?= $player['name'] ?></h3>
                             <p class="player-email"><?= $player['email'] ?></p>
                             <div class="player-tags">
                                 <span class="tag">AWP</span>
@@ -124,7 +122,7 @@ $playerslist = Joueur::getAll();
                             <div class="player-stats-row">
                                 <div class="stat-item">
                                     <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small"><?= $player['teamname'] ?></span>
+                                    <span class="stat-value-small">Vitality</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Valeur</span>
@@ -134,8 +132,6 @@ $playerslist = Joueur::getAll();
                         </div>
                         <div class="player-card-footer">
                             <button class="btn-icon-small">👁️</button>
-                            <button class="btn-icon-small">✏️</button>
-                            <button class="btn-icon-small danger">🗑️</button>
                         </div>
                     </div>
                     <?php } ?>

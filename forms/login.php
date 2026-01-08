@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
 
             // redirect to dashboard
             if($user->role == 'journalist'){
-                header("Location: ../indexx.php");
+                header("Location: ../visitor/indexx.php");
                 exit;
             }else{
                 header("location: ../index.php");

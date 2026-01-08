@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+require_once "connection.php";
+require_once "transfer.php";
+require_once "formater.php";
+
+$listtransfer = Transfer::getAll();
+$listcoachtransfer = Transfer::getAlll();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -50,6 +63,9 @@
                     <p class="user-name">Admin</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
+                <div class="team-badge">
+                    <a href="../forms/logout.php">LOG OUT</a>
+                </div>
             </div>
         </aside>
 
@@ -58,7 +74,10 @@
             <header class="top-bar">
                 <h2 class="page-title">Gestion des Transferts</h2>
                 <div class="header-actions">
-                    <a href="forms/add-transfer.php" class="btn-primary">+ Nouveau Transfert</a>
+                    <a href="forms/add-transfer.php" class="btn-primary">+ Nouveau Joueur Transfert</a>
+                </div>
+                <div class="header-actions">
+                    <a href="forms/add-coach-transfer.php" class="btn-primary">+ Nouveau Coach Transfert</a>
                 </div>
             </header>
 
@@ -105,36 +124,36 @@
 
                 <!-- Transfers Timeline -->
                 <div class="transfers-timeline">
+                    <?php foreach($listtransfer as $transfer) { ?>
                     <div class="timeline-item">
                         <div class="timeline-date">31 DÉC 2025</div>
                         <div class="timeline-content">
                             <div class="transfer-card-full">
                                 <div class="transfer-header-full">
-                                    <div class="transfer-code">TR-2025-1542</div>
-                                    <span class="status-badge completed">Complété</span>
+                                    <div class="transfer-code">JOUEUR</div>
+                                    <span class="status-badge completed"><?= $transfer['statut'] ?></span>
                                 </div>
                                 <div class="transfer-body-full">
                                     <div class="transfer-player-info">
                                         <div class="player-avatar-medium">ZW</div>
                                         <div>
-                                            <h4>ZywOo</h4>
-                                            <p class="player-role-transfer">AWP - CS2</p>
+                                            <h4><?= $transfer['joueur'] ?></h4>
                                         </div>
                                     </div>
                                     <div class="transfer-flow">
                                         <div class="team-box departure">
                                             <span class="team-label">DÉPART</span>
-                                            <span class="team-name">G2 Esports</span>
+                                            <span class="team-name"><?= $transfer['equipe_depart'] ?></span>
                                         </div>
                                         <div class="transfer-arrow-large">→</div>
                                         <div class="team-box arrival">
                                             <span class="team-label">ARRIVÉE</span>
-                                            <span class="team-name">Vitality</span>
+                                            <span class="team-name"><?= $transfer['equipe_arrivee'] ?></span>
                                         </div>
                                     </div>
                                     <div class="transfer-amount-box">
                                         <span class="amount-label">MONTANT</span>
-                                        <span class="amount-value">2.5M €</span>
+                                        <span class="amount-value"><?= Formater::currency($transfer['montant']) ?></span>
                                     </div>
                                 </div>
                                 <div class="transfer-footer-full">
@@ -144,8 +163,47 @@
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
 
+
+                    <?php foreach($listcoachtransfer as $coachtransfer) { ?>
                     <div class="timeline-item">
+                        <div class="timeline-date">25 DÉC 2025</div>
+                        <div class="timeline-content">
+                            <div class="transfer-card-full">
+                                <div class="transfer-header-full">
+                                    <div class="transfer-code">COACH</div>
+                                    <span class="status-badge completed"><?= $coachtransfer['statut'] ?></span>
+                                </div>
+                                <div class="transfer-body-full">
+                                    <div class="transfer-player-info">
+                                        <div class="player-avatar-medium">MX</div>
+                                        <div>
+                                            <h4><?= $coachtransfer['coach'] ?></h4>
+                                        </div>
+                                    </div>
+                                    <div class="transfer-flow">
+                                        <div class="team-box departure">
+                                            <span class="team-label">DÉPART</span>
+                                            <span class="team-name"><?= $coachtransfer['equipe_depart'] ?></span>
+                                        </div>
+                                        <div class="transfer-arrow-large">→</div>
+                                        <div class="team-box arrival">
+                                            <span class="team-label">ARRIVÉE</span>
+                                            <span class="team-name"><?= $coachtransfer['equipe_arrivee'] ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="transfer-footer-full">
+                                    <button class="btn-secondary-small">📄 Détails</button>
+                                    <button class="btn-secondary-small">📥 Export PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+
+                    <!-- <div class="timeline-item">
                         <div class="timeline-date">28 DÉC 2025</div>
                         <div class="timeline-content">
                             <div class="transfer-card-full">
@@ -303,7 +361,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </main>

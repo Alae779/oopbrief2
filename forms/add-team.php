@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../equipe.php";
 if(isset($_POST['submit'])){
     $name = $_POST['name'];

@@ -3,24 +3,25 @@
 require_once "../equipe.php";
 require_once "../joueur.php";
 require_once "../transfer.php";
+require_once "../coach.php";
 session_start();
         $listEquipe = Equipe::getAll();
         $listJoueur = Joueur::getAll();
+        $listcoach = Coach::getAll();
         
         if(isset($_POST['submit'])){
-            $joueur_id = $_POST['joueur'];
+            $coach_id = $_POST['coach'];
             $equipe_depart = $_POST['equipe_depart'];
             $equipe_arrive = $_POST['equipe_arrivee'];
             $salaire = $_POST['salaire'];
             $clause_rachat = $_POST['clause'];
             $date_fin = $_POST['date_fin'];
-            
 
-            if(empty($joueur_id) || empty($equipe_depart) || empty($equipe_arrive)){
+            if(empty($coach_id) || empty($equipe_depart) || empty($equipe_arrive)){
                 echo "Veuillez remplir tous les champs";
             }else{
-                $transfer = new Transfer($equipe_depart, $equipe_arrive, 'pending', $joueur_id, null);
-                $result = $transfer->executeTransfer($salaire, $clause_rachat, $date_fin);
+                $transfer = new Transfer($equipe_depart, $equipe_arrive, 'pending');
+                $result = $transfer->executeCoachTransfer($coach_id, $salaire, $clause_rachat, $date_fin);
 
                 if($result === true){
                     header("location: ../transfers.php");
@@ -98,20 +99,20 @@ session_start();
 
             <div class="content-wrapper">
                 <div class="form-container">
-                    <form class="entity-form" action="add-transfer.php" method="post">
+                    <form class="entity-form" action="add-coach-transfer.php" method="post">
                         <!-- Player Selection Section -->
                         <div class="form-section">
                             <div class="section-header">
                                 <div class="section-icon">👤</div>
-                                <h3 class="section-title">Joueur Transféré</h3>
+                                <h3 class="section-title">Coach Transféré</h3>
                             </div>
                             <div class="form-grid">
                                 <div class="form-field full-width">
-                                    <label for="joueur">Joueur *</label>
-                                    <select id="joueur" name="joueur" required>
-                                        <option value="">Sélectionner un joueur...</option>
-                                        <?php foreach($listJoueur as $joueur) { ?>
-                                        <option value="<?= $joueur['playerid'] ?>"><?= $joueur['playername'] ?></option>
+                                    <label for="joueur">Coach *</label>
+                                    <select id="joueur" name="coach" required>
+                                        <option value="">Sélectionner un coach...</option>
+                                        <?php foreach($listcoach as $coach) { ?>
+                                        <option value="<?= $coach['coachid'] ?>"><?= $coach['coachname'] ?></option>
                                         <?php } ?>
                                     </select>
                                     <span class="field-hint">Seuls les joueurs sous contrat apparaissent</span>
