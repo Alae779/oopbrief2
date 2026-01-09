@@ -1,6 +1,5 @@
 <?php
 require_once "../coach.php";
-require_once "../formater.php";
 $listcoaches = Coach::getAll();
 session_start();
 ?>
@@ -40,11 +39,11 @@ session_start();
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item">
+                <a href="contractt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item">
+                <a href="transferr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -53,7 +52,7 @@ session_start();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Journalist</p>
+                    <p class="user-name">Visitor</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
@@ -109,21 +108,14 @@ session_start();
                             <span class="coach-status-dot active"></span>
                         </div>
                         <div class="coach-card-body">
-                            <h3 class="coach-name-large"><?= $coach['name'] ?></h3>
+                            <h3 class="coach-name-large"><?= $coach['coachname'] ?></h3>
                             <p class="coach-email"><?= $coach['email'] ?></p>
-                            
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">CS2</span>
-                                <span class="specialty-badge">Stratégie</span>
-                                <span class="specialty-badge">IGL</span>
-                            </div>
-
                             <div class="coach-info-grid">
                                 <div class="info-item">
                                     <span class="info-icon">🏆</span>
                                     <div>
                                         <span class="info-label">Équipe actuelle</span>
-                                        <span class="info-value">Fnatic</span>
+                                        <span class="info-value"><?= $coach['teamname'] ?></span>
                                     </div>
                                 </div>
                                 <div class="info-item">
@@ -135,18 +127,6 @@ session_start();
                                 </div>
                             </div>
 
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 Major Champion x2</div>
-                                    <div class="achievement-item">🏆 IEM Katowice</div>
-                                    <div class="achievement-item">⭐ BLAST Winner</div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
                         </div>
                     </div>
                     <?php } ?>

@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
 
             // redirect to dashboard
             if($user->role == 'journalist'){
-                header("Location: ../visitor/indexx.php");
+                header("Location: ../journalist/indexxx.php");
                 exit;
             }else{
                 header("location: ../index.php");
@@ -27,10 +27,10 @@ if(isset($_POST['submit'])){
             }
             
         } else {
-            $error = "Mot de passe incorrect.";
+            $error = "Mot de passe incorrect";
         }
     } else {
-        $error = "Aucun compte trouvé avec cet email.";
+        $error = "Aucun compte trouvé avec ce email";
     }
 
 }
@@ -107,7 +107,7 @@ if(isset($_POST['submit'])){
 
                 <div class="divider"><span>OU</span></div>
 
-                <a href="../index.php" class="btn-public">
+                <a href="../visitor/indexx.php" class="btn-public">
                     <span>👁️</span>
                     <span>Continuer en mode visiteur</span>
                 </a>

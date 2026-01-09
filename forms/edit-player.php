@@ -1,19 +1,21 @@
 <?php
-require_once "../equipe.php";
+require_once "../joueur.php";
 session_start();
 
-$teamId = $_GET['id'];
+$playerid = $_GET['id'];
+$playerdata = Joueur::getById($playerid);
 
-$teamData = Equipe::getById($teamId);
-
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])){
     $name = $_POST['name'];
-    $budget = $_POST['budget'];
-    $manager = $_POST['manager'];
+    $email = $_POST['email'];
+    $nationnality = $_POST['nationnality'];
+    $role = $_POST['role'];
+    $valeur = $_POST['valeur'];
 
-    $team = new Equipe($name, $budget, $manager, $teamId);
-    $team->Update();
-    header("Location: ../players.php");
+    $player = new Joueur($name, $nationnality, $email, $role, $valeur, null, $playerid);
+    $player->Update();
+
+    header("location: ../players.php");
     exit;
 }
 ?>
@@ -76,14 +78,14 @@ if (isset($_POST['submit'])) {
         <main class="main-content">
             <header class="top-bar">
                 <div>
-                    <a href="../teams.php" class="back-link">← Retour aux équipes</a>
+                    <a href="../players.php" class="back-link">← Retour aux joueurs</a>
                     <h2 class="page-title">Modifier</h2>
                 </div>
             </header>
 
             <div class="content-wrapper">
                 <div class="form-container">
-                    <form class="entity-form" action="team-edit.php?id=<?= $teamData['id'] ?>" method="post">
+                    <form class="entity-form" action="edit-player.php?id=<?= $playerdata['id'] ?>" method="post">
                         <!-- Team Information Section -->
                         <div class="form-section">
                             <div class="section-header">
@@ -93,26 +95,36 @@ if (isset($_POST['submit'])) {
                             <div class="form-grid">
                                 
                                 <div class="form-field">
-                                    <input type="hidden" name="id" value="<?= $teamData['id'] ?>">
-                                    <label for="nom">Nouveau nom de l'équipe *</label>
-                                    <input value="<?= htmlspecialchars($teamData['name']) ?>" type="text" id="nom" name="name" placeholder="Ex: Team Vitality" required>
+                                    <input type="hidden" name="id" value="<?= $playerdata['id'] ?>">
+                                    <label for="nom">Nouveau nom du joueur *</label>
+                                    <input value="<?= htmlspecialchars($playerdata['name']) ?>" type="text" id="nom" name="name" placeholder="Ex: Team Vitality" required>
                                 </div>
 
                                 <div class="form-field">
-                                    <label for="manager">Nouveau Manager</label>
-                                    <input value="<?= htmlspecialchars($teamData['manager']) ?>" type="text" id="manager" name="manager" placeholder="Ex: Nicolas Maurer" required>
+                                    <label for="manager">Nouveau Email</label>
+                                    <input value="<?= htmlspecialchars($playerdata['email']) ?>" type="email" id="manager" name="email" placeholder="Ex: Nicolas Maurer" required>
                                 </div>
 
                                 <div class="form-field">
-                                    <label for="budget">Nouveau budget total (€) *</label>
-                                    <input value="<?= htmlspecialchars($teamData['budget']) ?>" type="number" id="budget" name="budget" placeholder="Ex: 15500000" required>
+                                    <label for="manager">Nouvelle nationnality</label>
+                                    <input value="<?= htmlspecialchars($playerdata['nationnality']) ?>" type="text" id="manager" name="nationnality" placeholder="Ex: Nicolas Maurer" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="manager">Nouveau role</label>
+                                    <input value="<?= htmlspecialchars($playerdata['role']) ?>" type="text" id="manager" name="role" placeholder="Ex: Nicolas Maurer" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="budget">Nouvelle valeur marchande (€) *</label>
+                                    <input value="<?= htmlspecialchars($playerdata['valeur_marchande']) ?>" type="number" id="budget" name="valeur" placeholder="Ex: 15500000" required>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Form Actions -->
                         <div class="form-actions">
-                            <a href="../teams.php" class="btn-secondary">Annuler</a>
+                            <a href="../players.php" class="btn-secondary">Annuler</a>
                             <button type="reset" class="btn-secondary">Réinitialiser</button>
                             <button name="submit" type="submit" class="btn-primary">✓ Enregistrer les modifications</button>
                         </div>

@@ -1,19 +1,20 @@
 <?php
-require_once "../equipe.php";
+require_once "../transfer.php";
+require_once "../contrat.php";
 session_start();
 
-$teamId = $_GET['id'];
+$transferid = $_GET['id'];
+$transferdata = Transfer::getById($transferid);
 
-$teamData = Equipe::getById($teamId);
+if(isset($_POST['submit'])){
+    $salaire = $_POST['salaire'];
+    $clause = $_POST['clause'];
+    $date_fin = $_POST['date_fin'];
+    $statut = $_POST['statut'];
+    
+    $result = Transfer::updatePlayerTransfer($transferid, $salaire, $clause, $date_fin, $statut);
 
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $budget = $_POST['budget'];
-    $manager = $_POST['manager'];
-
-    $team = new Equipe($name, $budget, $manager, $teamId);
-    $team->Update();
-    header("Location: ../players.php");
+    header("location: ../transfers.php");
     exit;
 }
 ?>
@@ -76,14 +77,14 @@ if (isset($_POST['submit'])) {
         <main class="main-content">
             <header class="top-bar">
                 <div>
-                    <a href="../teams.php" class="back-link">← Retour aux équipes</a>
+                    <a href="../players.php" class="back-link">← Retour aux joueurs</a>
                     <h2 class="page-title">Modifier</h2>
                 </div>
             </header>
 
             <div class="content-wrapper">
                 <div class="form-container">
-                    <form class="entity-form" action="team-edit.php?id=<?= $teamData['id'] ?>" method="post">
+                    <form class="entity-form" action="edit-transfer.php?id=<?= $transferdata['id'] ?>" method="post">
                         <!-- Team Information Section -->
                         <div class="form-section">
                             <div class="section-header">
@@ -93,26 +94,37 @@ if (isset($_POST['submit'])) {
                             <div class="form-grid">
                                 
                                 <div class="form-field">
-                                    <input type="hidden" name="id" value="<?= $teamData['id'] ?>">
-                                    <label for="nom">Nouveau nom de l'équipe *</label>
-                                    <input value="<?= htmlspecialchars($teamData['name']) ?>" type="text" id="nom" name="name" placeholder="Ex: Team Vitality" required>
+                                    <label for="statut">Nouveay statut *</label>
+                                    <select id="statut" name="statut" required>
+                                        <option value="">Sélectionner...</option>
+                                        <option value="COMPLETED">COMPLETED</option>
+                                        <option value="IN PROGRESS">IN PROGRESS</option>
+                                        <option value="CANCELED">CANCELED</option>
+                                    </select>
+                                    <span class="field-hint">Nouveau statut du transfer</span>
                                 </div>
 
                                 <div class="form-field">
-                                    <label for="manager">Nouveau Manager</label>
-                                    <input value="<?= htmlspecialchars($teamData['manager']) ?>" type="text" id="manager" name="manager" placeholder="Ex: Nicolas Maurer" required>
+                                    <label for="valeur_marchande">Salaire (€) *</label>
+                                    <input type="number" id="valeur_marchande" name="salaire" placeholder="Ex: 2500000" required>
                                 </div>
 
                                 <div class="form-field">
-                                    <label for="budget">Nouveau budget total (€) *</label>
-                                    <input value="<?= htmlspecialchars($teamData['budget']) ?>" type="number" id="budget" name="budget" placeholder="Ex: 15500000" required>
+                                    <label for="valeur_marchande">Clause de rachat (€) *</label>
+                                    <input type="number" id="valeur_marchande" name="clause" placeholder="Ex: 2500000" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="date_fin">Date de fin du contrat *</label>
+                                    <input type="date" id="date_fin" name="date_fin" required>
+                                    <span class="field-hint">Date d'expiration du contrat</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Form Actions -->
                         <div class="form-actions">
-                            <a href="../teams.php" class="btn-secondary">Annuler</a>
+                            <a href="../transfers.php" class="btn-secondary">Annuler</a>
                             <button type="reset" class="btn-secondary">Réinitialiser</button>
                             <button name="submit" type="submit" class="btn-primary">✓ Enregistrer les modifications</button>
                         </div>

@@ -1,10 +1,10 @@
 <?php
-require_once "connection.php";
-require_once "transfer.php";
-require_once "coach.php";
-require_once "joueur.php";
-require_once "contrat.php";
-require_once "formater.php";
+require_once "../connection.php";
+require_once "../transfer.php";
+require_once "../coach.php";
+require_once "../joueur.php";
+require_once "../contrat.php";
+require_once "../formater.php";
 session_start();
 $listtransfer = Transfer::getThree();
 $listcoachtransfer = Transfer::getThreee();
@@ -21,8 +21,8 @@ $transfercount = Transfer::getCount();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Management - Dashboard</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -34,27 +34,27 @@ $transfercount = Transfer::getCount();
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item active">
+                <a href="indexxx.php" class="nav-item active">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item">
+                <a href="playersss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item">
+                <a href="coachesss.php" class="nav-item">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item">
+                <a href="teamsss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item">
+                <a href="contrattt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item">
+                <a href="transferrr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -63,11 +63,11 @@ $transfercount = Transfer::getCount();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Journalist</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
-                    <a href="forms/logout.php">LOG OUT</a>
+                    <a href="../forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>
@@ -76,6 +76,10 @@ $transfercount = Transfer::getCount();
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Dashboard</h2>
+                <div class="header-actions">
+                    <button class="btn-icon">🔔</button>
+                    <button class="btn-icon">⚙️</button>
+                </div>
             </header>
 
             <div class="content-wrapper">

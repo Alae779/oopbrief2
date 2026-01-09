@@ -12,10 +12,11 @@ class Joueur extends Person{
     private float $signingBonus = 0;
     private float $monthlySalary = 0;
 
-    public function __construct(string $name,string $nationnality, string $email,string $role,float $valeurmarchande, ?int $equipeId = null)
+    public function __construct(string $name,string $nationnality, string $email,string $role,float $valeurmarchande, ?int $equipeId = null, ?int $id = null)
     {
         parent::__construct($name, $nationnality);
         $this->con = Database::getInstance()->getConnection();
+        $this->id = $id;
         $this->email = $email;
         $this->role = $role;
         $this->valeurmarchande = $valeurmarchande;
@@ -65,6 +66,42 @@ class Joueur extends Person{
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
+    }
+
+
+    public static function getFour(){
+        $con = Database::getInstance()->getConnection();
+        $sqll = "SELECT joueurs.id as playerid, joueurs.name as playername, equipes.name as teamname, email, valeur_marchande FROM joueurs
+                LEFT JOIN equipes ON equipe_id = equipes.id
+                ORDER BY playerid LIMIT 4";
+        $stmt = $con->prepare($sqll);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    public static function getCount(){
+        $con = Database::getInstance()->getConnection();
+        $sqll = "SELECT COUNT(name) as total FROM joueurs";
+        $stmt = $con->prepare($sqll);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+
+
+    public function Update(){
+        $sql = "UPDATE joueurs SET name = :name, email = :email, nationnality = :nationnality, role = :role, valeur_marchande = :valeur_marchande
+                WHERE id = :id";
+        $stmt = $this->con->prepare($sql);
+        return $stmt->execute([
+            ':name' => $this->name,
+            ':email' => $this->email,
+            ':nationnality' => $this->nationnality,
+            ':role' => $this->role,
+            ':valeur_marchande' => $this->valeurmarchande,
+            ':id' => $this->id
+        ]);
     }
 
     public function Create(){

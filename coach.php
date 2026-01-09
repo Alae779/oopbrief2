@@ -39,6 +39,15 @@ class Coach extends Person{
         return $result;
     }
 
+    public static function getCount(){
+        $con = Database::getInstance()->getConnection();
+        $sqll = "SELECT COUNT(name) as total FROM coaches";
+        $stmt = $con->prepare($sqll);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+
     public function Create(){
         $sql = "INSERT INTO coaches(name, email, nationnality, annees_experience, equipe_id)
                 VALUES(:name, :email, :nationnality, :anneesexperience, :equipe_id)";

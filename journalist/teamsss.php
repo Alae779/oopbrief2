@@ -1,6 +1,6 @@
 <?php
-require_once "equipe.php";
-require_once "formater.php";
+require_once "../equipe.php";
+require_once "../formater.php";
 session_start();
 $listEquipe = Equipe::getAll();
 ?>
@@ -10,9 +10,9 @@ $listEquipe = Equipe::getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Équipes - Apex Management</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <link rel="stylesheet" href="styles/teams.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/teams.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,27 +24,27 @@ $listEquipe = Equipe::getAll();
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item">
+                <a href="indexxx.php" class="nav-item">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item">
+                <a href="playersss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item">
+                <a href="coachesss.php" class="nav-item">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item active">
+                <a href="teamsss.php" class="nav-item active">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item">
+                <a href="contrattt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item">
+                <a href="transferrr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -53,11 +53,11 @@ $listEquipe = Equipe::getAll();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Journalist</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
-                    <a href="forms/logout.php">LOG OUT</a>
+                    <a href="../forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>
@@ -66,9 +66,6 @@ $listEquipe = Equipe::getAll();
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Gestion des Équipes</h2>
-                <div class="header-actions">
-                    <a href="forms/add-team.php" class="btn-primary">+ Créer Équipe</a>
-                </div>
             </header>
 
             <div class="content-wrapper">
@@ -121,10 +118,6 @@ $listEquipe = Equipe::getAll();
                                     <span class="stat-text">Contrats</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="team-footer">
-                            <a href="forms/team-edit.php?id=<?= $equ['id'] ?>" class="btn-team-action">✏️ Modifier</a>
-                            <button class="btn-team-action danger">🗑️</button>
                         </div>
                     </div>
                     <?php } ?>

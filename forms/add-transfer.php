@@ -3,9 +3,11 @@
 require_once "../equipe.php";
 require_once "../joueur.php";
 require_once "../transfer.php";
+require_once "../coach.php";
 session_start();
         $listEquipe = Equipe::getAll();
         $listJoueur = Joueur::getAll();
+        $listcoach = Coach::getAll();
         
         if(isset($_POST['submit'])){
             $joueur_id = $_POST['joueur'];
@@ -14,12 +16,13 @@ session_start();
             $salaire = $_POST['salaire'];
             $clause_rachat = $_POST['clause'];
             $date_fin = $_POST['date_fin'];
+            $statut = $_POST['statut'];
             
 
             if(empty($joueur_id) || empty($equipe_depart) || empty($equipe_arrive)){
                 echo "Veuillez remplir tous les champs";
             }else{
-                $transfer = new Transfer($equipe_depart, $equipe_arrive, 'pending', $joueur_id, null);
+                $transfer = new Transfer($equipe_depart, $equipe_arrive, $statut, $joueur_id, null);
                 $result = $transfer->executeTransfer($salaire, $clause_rachat, $date_fin);
 
                 if($result === true){
@@ -161,6 +164,17 @@ session_start();
                                     <label for="date_fin">Date de fin du contrat *</label>
                                     <input type="date" id="date_fin" name="date_fin" required>
                                     <span class="field-hint">Date d'expiration du contrat</span>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="statut">Statut *</label>
+                                    <select id="statut" name="statut" required>
+                                        <option value="">Sélectionner...</option>
+                                        <option value="COMPLETED">COMPLETED</option>
+                                        <option value="IN PROGRESS">IN PROGRESS</option>
+                                        <option value="CANCELED">CANCELED</option>
+                                    </select>
+                                    <span class="field-hint">Statut actuelle du transfer</span>
                                 </div>
                             </div>
                         </div>

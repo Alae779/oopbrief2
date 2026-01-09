@@ -234,6 +234,10 @@
     transition: all var(--transition-fast);
 }
 
+a.btn-icon-small{
+    text-align: center;
+}
+
 .btn-icon-small:hover {
     background: var(--color-bg-secondary);
     border-color: var(--color-accent-blue);

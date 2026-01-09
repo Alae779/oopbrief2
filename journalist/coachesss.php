@@ -1,19 +1,17 @@
 <?php
-require_once "../joueur.php";
-require_once "../formater.php";
+require_once "../coach.php";
+$listcoaches = Coach::getAll();
 session_start();
-
-$playerslist = Joueur::getAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joueurs - Apex Management</title>
+    <title>Coachs - Apex Management</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
-    <link rel="stylesheet" href="../styles/players.css">
+    <link rel="stylesheet" href="../styles/coaches.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,27 +23,27 @@ $playerslist = Joueur::getAll();
             </div>
             
             <nav class="nav-menu">
-                <a href="indexx.php" class="nav-item">
+                <a href="indexxx.php" class="nav-item">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="playerss.php" class="nav-item active">
+                <a href="playersss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coachess.php" class="nav-item">
+                <a href="coachesss.php" class="nav-item active">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teamss.php" class="nav-item">
+                <a href="teamsss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contratt.php" class="nav-item">
+                <a href="contrattt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transferr.php" class="nav-item">
+                <a href="transferrr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -54,7 +52,7 @@ $playerslist = Joueur::getAll();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Visitor</p>
+                    <p class="user-name">Journalist</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
@@ -66,14 +64,14 @@ $playerslist = Joueur::getAll();
         <!-- Main Content -->
         <main class="main-content">
             <header class="top-bar">
-                <h2 class="page-title">Joueurs</h2>
+                <h2 class="page-title">Gestion des Coachs</h2>
             </header>
 
             <div class="content-wrapper">
                 <!-- Filters and Search -->
                 <div class="filters-section">
                     <div class="search-bar">
-                        <input type="text" placeholder="🔍 Rechercher un joueur..." class="search-input">
+                        <input type="text" placeholder="🔍 Rechercher un coach..." class="search-input">
                     </div>
                     <div class="filters-row">
                         <select class="filter-select">
@@ -84,46 +82,51 @@ $playerslist = Joueur::getAll();
                             <option value="dota2">Dota 2</option>
                         </select>
                         <select class="filter-select">
-                            <option value="">Tous les rôles</option>
-                            <option value="awp">AWP</option>
-                            <option value="rifler">Rifler</option>
-                            <option value="mid">Mid</option>
-                            <option value="adc">ADC</option>
-                            <option value="support">Support</option>
+                            <option value="">Toutes les équipes</option>
+                            <option value="vitality">Vitality</option>
+                            <option value="g2">G2 Esports</option>
+                            <option value="kc">Karmine Corp</option>
                         </select>
                         <select class="filter-select">
-                            <option value="">Toutes les nationalités</option>
-                            <option value="fr">🇫🇷 France</option>
-                            <option value="es">🇪🇸 Espagne</option>
-                            <option value="kr">🇰🇷 Corée du Sud</option>
-                            <option value="br">🇧🇷 Brésil</option>
+                            <option value="">Expérience</option>
+                            <option value="junior">0-2 ans</option>
+                            <option value="mid">3-5 ans</option>
+                            <option value="senior">5+ ans</option>
                         </select>
                         <button class="btn-secondary">Réinitialiser</button>
                     </div>
                 </div>
 
-                <!-- Players Grid -->
-                <div class="players-container">
-                    <?php foreach($playerslist as $player) { ?>
-                    <div class="player-card-detailed">
-                        <div class="player-card-header">
-                            <div class="player-avatar-large">ZW</div>
-                            <div class="player-flag-large"></div>
-                            <span class="player-status-dot active"></span>
+                <!-- Coaches Grid -->
+                <div class="coaches-container">
+                    <!-- Coach Card 1 -->
+                     <?php foreach($listcoaches as $coach) { ?>
+                    <div class="coach-card-detailed">
+                        <div class="coach-card-header">
+                            <div class="coach-avatar-large">DP</div>
+                            <div class="coach-flag-large"></div>
+                            <span class="coach-status-dot active"></span>
                         </div>
-                        <div class="player-card-body">
-                            <h3 class="player-name-large"><?= $player['playername'] ?></h3>
-                            <p class="player-email"><?= $player['email'] ?></p>
-                            <div class="player-stats-row">
-                                <div class="stat-item">
-                                    <span class="stat-label">Équipe</span>
-                                    <span class="stat-value-small"><?= $player['teamname'] ?></span>
+                        <div class="coach-card-body">
+                            <h3 class="coach-name-large"><?= $coach['coachname'] ?></h3>
+                            <p class="coach-email"><?= $coach['email'] ?></p>
+                            <div class="coach-info-grid">
+                                <div class="info-item">
+                                    <span class="info-icon">🏆</span>
+                                    <div>
+                                        <span class="info-label">Équipe actuelle</span>
+                                        <span class="info-value"><?= $coach['teamname'] ?></span>
+                                    </div>
                                 </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Valeur</span>
-                                    <span class="stat-value-small highlight"><?= Formater::currency($player['valeur_marchande']) ?></span>
+                                <div class="info-item">
+                                    <span class="info-icon">⏱️</span>
+                                    <div>
+                                        <span class="info-label">Expérience</span>
+                                        <span class="info-value"><?= $coach['annees_experience'] ?> ans</span>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <?php } ?>

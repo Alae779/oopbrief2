@@ -1,6 +1,6 @@
 <?php
-require_once "contrat.php";
-require_once "formater.php";
+require_once "../contrat.php";
+require_once "../formater.php";
 session_start();
 $playercontractslist = Contrat::getAll();
 $coachcontractslist = Contrat::getAlll();
@@ -12,9 +12,9 @@ $coachcontractslist = Contrat::getAlll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contrats - Apex Management</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <link rel="stylesheet" href="styles/contracts.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/contracts.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -26,27 +26,27 @@ $coachcontractslist = Contrat::getAlll();
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item">
+                <a href="indexx.php" class="nav-item">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item">
+                <a href="playerss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item">
+                <a href="coachess.php" class="nav-item">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item">
+                <a href="teamss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item active">
+                <a href="contractt.php" class="nav-item active">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item">
+                <a href="transferr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -55,11 +55,11 @@ $coachcontractslist = Contrat::getAlll();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Visitor</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
-                    <a href="forms/logout.php">LOG OUT</a>
+                    <a href="../forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>
@@ -72,7 +72,7 @@ $coachcontractslist = Contrat::getAlll();
 
             <div class="content-wrapper">
                 <!-- Stats Overview -->
-                <div class="contract-stats-grid">
+                <!-- <div class="contract-stats-grid">
                     <div class="contract-stat-card">
                         <div class="stat-icon-contract active">✓</div>
                         <div>
@@ -101,7 +101,7 @@ $coachcontractslist = Contrat::getAlll();
                             <h3 class="stat-value">2.4M €</h3>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Contracts List -->
                 <div class="contracts-list">

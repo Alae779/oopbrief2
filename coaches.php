@@ -56,7 +56,7 @@ session_start();
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
-                    <a href="../forms/logout.php">LOG OUT</a>
+                    <a href="forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>
@@ -114,12 +114,6 @@ session_start();
                             <h3 class="coach-name-large"><?= $coach['coachname'] ?></h3>
                             <p class="coach-email"><?= $coach['email'] ?></p>
                             
-                            <div class="coach-specialties">
-                                <span class="specialty-badge">CS2</span>
-                                <span class="specialty-badge">Stratégie</span>
-                                <span class="specialty-badge">IGL</span>
-                            </div>
-
                             <div class="coach-info-grid">
                                 <div class="info-item">
                                     <span class="info-icon">🏆</span>
@@ -137,18 +131,8 @@ session_start();
                                 </div>
                             </div>
 
-                            <div class="coach-achievements">
-                                <p class="achievements-label">Palmarès :</p>
-                                <div class="achievements-list">
-                                    <div class="achievement-item">🥇 Major Champion x2</div>
-                                    <div class="achievement-item">🏆 IEM Katowice</div>
-                                    <div class="achievement-item">⭐ BLAST Winner</div>
-                                </div>
-                            </div>
-
                         </div>
                         <div class="coach-card-footer">
-                            <button class="btn-icon-small">👁️</button>
                             <button class="btn-icon-small">✏️</button>
                             <button class="btn-icon-small danger">🗑️</button>
                         </div>

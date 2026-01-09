@@ -28,6 +28,15 @@ class Equipe{
         return $result;
     }
 
+    public static function getCount(){
+        $con = Database::getInstance()->getConnection();
+        $sqll = "SELECT COUNT(name) as total FROM equipes";
+        $stmt = $con->prepare($sqll);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+
     public function Create(){
         $sql = "INSERT INTO equipes(name, budget, manager)
             VALUES (:name, :budget, :manager)";

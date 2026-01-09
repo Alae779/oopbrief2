@@ -60,12 +60,25 @@ class Contrat{
 
     public static function getAll(){
         $con = Database::getInstance()->getConnection();
-        $stmt = $con->prepare("SELECT c.*, j.name as joueur_name, co.name as coach_name, e.name as equipe_name FROM contrats c
-                LEFT JOIN joueurs j ON c.joueur_id = j.id
-                LEFT JOIN coaches co ON c.coach_id = co.id
-                LEFT JOIN equipes e ON c.equipe_id = e.id");
+        $stmt = $con->prepare("SELECT c.id as id, c.salaire, c.clause_rachat, c.date_fin, j.role as role, j.name as joueur_name, e.name as equipe_name FROM contrats c
+                JOIN joueurs j ON c.joueur_id = j.id
+                JOIN equipes e ON c.equipe_id = e.id");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
         
     }
+
+    public static function getAlll(){
+        $con = Database::getInstance()->getConnection();
+        $stmt = $con->prepare("SELECT c.id as id, c.salaire, c.clause_rachat, c.date_fin, co.name as coach_name, e.name as equipe_name FROM contrats c
+                JOIN coaches co ON c.coach_id = co.id
+                JOIN equipes e ON c.equipe_id = e.id");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
 
 }
 

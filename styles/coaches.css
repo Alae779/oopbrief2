@@ -261,6 +261,33 @@
     overflow: hidden;
 }
 
+.btn-icon-small {
+    flex: 1;
+    padding: 0.75rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+a.btn-icon-small{
+    text-align: center;
+}
+
+.btn-icon-small:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-accent-blue);
+    transform: translateY(-2px);
+}
+
+.btn-icon-small.danger:hover {
+    background: rgba(255, 51, 102, 0.1);
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
 .progress-fill::after {
     content: '';
     position: absolute;
@@ -289,6 +316,8 @@
     font-family: var(--font-display);
     text-align: right;
 }
+
+
 
 /* Coach Card Footer */
 .coach-card-footer {

@@ -1,13 +1,13 @@
 <?php
 
 session_start();
-require_once "connection.php";
-require_once "transfer.php";
-require_once "contrat.php";
-require_once "formater.php";
+require_once "../connection.php";
+require_once "../transfer.php";
+require_once "../contrat.php";
+require_once "../formater.php";
 
-$listtransfer = Transfer::getAll();
-$listcoachtransfer = Transfer::getAlll();
+$listtransfer = Transfer::getAllCompleted();
+$listcoachtransfer = Transfer::getAlllCompleted();
 
 
 
@@ -20,9 +20,9 @@ $listcoachtransfer = Transfer::getAlll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transferts - Apex Management</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <link rel="stylesheet" href="styles/transfers.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/transfers.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -34,27 +34,27 @@ $listcoachtransfer = Transfer::getAlll();
             </div>
             
             <nav class="nav-menu">
-                <a href="index.php" class="nav-item">
+                <a href="indexx.php" class="nav-item">
                     <span class="icon">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="players.php" class="nav-item">
+                <a href="playerss.php" class="nav-item">
                     <span class="icon">🎮</span>
                     <span>Joueurs</span>
                 </a>
-                <a href="coaches.php" class="nav-item">
+                <a href="coachess.php" class="nav-item">
                     <span class="icon">👔</span>
                     <span>Coachs</span>
                 </a>
-                <a href="teams.php" class="nav-item">
+                <a href="teamss.php" class="nav-item">
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item">
+                <a href="contratt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item active">
+                <a href="transferr.php" class="nav-item active">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -63,11 +63,11 @@ $listcoachtransfer = Transfer::getAlll();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Admin</p>
+                    <p class="user-name">Visitor</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
-                    <a href="forms/logout.php">LOG OUT</a>
+                    <a href="../forms/logout.php">LOG OUT</a>
                 </div>
             </div>
         </aside>
@@ -76,17 +76,11 @@ $listcoachtransfer = Transfer::getAlll();
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Gestion des Transferts</h2>
-                <div class="header-actions">
-                    <a href="forms/add-transfer.php" class="btn-primary">+ Nouveau Joueur Transfert</a>
-                </div>
-                <div class="header-actions">
-                    <a href="forms/add-coach-transfer.php" class="btn-primary">+ Nouveau Coach Transfert</a>
-                </div>
             </header>
 
             <div class="content-wrapper">
                 <!-- Stats Overview -->
-                <div class="transfer-stats-grid">
+                <!-- <div class="transfer-stats-grid">
                     <div class="transfer-stat-card">
                         <div class="stat-icon-transfer completed">✓</div>
                         <div>
@@ -115,7 +109,7 @@ $listcoachtransfer = Transfer::getAlll();
                             <h3 class="stat-value">42.5M €</h3>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Transfers Timeline -->
                 <div class="transfers-timeline">
@@ -162,14 +156,6 @@ $listcoachtransfer = Transfer::getAlll();
                                         <span class="amount-value"><?= Formater::currency($transfer['montant']) ?></span>
                                     </div>
                                 </div>
-                                <div class="transfer-footer-full">
-                                    <button class="btn-secondary-small">📄 Détails</button>
-                                    <?php if(strtolower($transfer['statut']) === 'in progress'){ ?>
-                                    
-                                        <a href="forms/edit-transfer.php?id=<?= $transfer['transferid'] ?>" class="btn-primary-small">✏️ Modifier</a>
-                                    
-                                    <?php } ?>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -215,14 +201,6 @@ $listcoachtransfer = Transfer::getAlll();
                                             <span class="team-name"><?= $coachtransfer['equipe_arrivee'] ?></span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="transfer-footer-full">
-                                    <button class="btn-secondary-small">📄 Détails</button>
-                                    <?php if(strtolower($coachtransfer['statut']) === 'in progress'){ ?>
-                                    
-                                        <a href="forms/edit-coach-transfer.php?id=<?= $coachtransfer['transferid'] ?>" class="btn-primary-small">✏️ Modifier</a>
-                                    
-                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

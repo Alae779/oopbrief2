@@ -1,9 +1,20 @@
 <?php
-
+require_once "../connection.php";
+require_once "../transfer.php";
+require_once "../coach.php";
+require_once "../joueur.php";
+require_once "../contrat.php";
+require_once "../formater.php";
 session_start();
+$listtransfer = Transfer::getThreeCompleted();
+$listcoachtransfer = Transfer::getThreeeCompleted();
+$playerslist = Joueur::getFour();
+$playercount = Joueur::getCount();
+$coachcount = Coach::getCount();
+$teamcount = Equipe::getCount();
+$transfercount = Transfer::getCount();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -39,11 +50,11 @@ session_start();
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item">
+                <a href="contratt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item">
+                <a href="transferr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -52,7 +63,7 @@ session_start();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Journalist</p>
+                    <p class="user-name">Visitor</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
@@ -65,10 +76,6 @@ session_start();
         <main class="main-content">
             <header class="top-bar">
                 <h2 class="page-title">Dashboard</h2>
-                <div class="header-actions">
-                    <button class="btn-icon">🔔</button>
-                    <button class="btn-icon">⚙️</button>
-                </div>
             </header>
 
             <div class="content-wrapper">
@@ -78,8 +85,7 @@ session_start();
                         <div class="stat-icon">🎮</div>
                         <div class="stat-info">
                             <p class="stat-label">Joueurs Actifs</p>
-                            <h3 class="stat-value">247</h3>
-                            <span class="stat-change positive">+12%</span>
+                            <h3 class="stat-value"><?= $playercount['total'] ?></h3>
                         </div>
                     </div>
 
@@ -87,8 +93,7 @@ session_start();
                         <div class="stat-icon">👔</div>
                         <div class="stat-info">
                             <p class="stat-label">Coachs</p>
-                            <h3 class="stat-value">48</h3>
-                            <span class="stat-change positive">+5%</span>
+                            <h3 class="stat-value"><?= $coachcount['total'] ?></h3>
                         </div>
                     </div>
 
@@ -96,17 +101,15 @@ session_start();
                         <div class="stat-icon">🏆</div>
                         <div class="stat-info">
                             <p class="stat-label">Équipes</p>
-                            <h3 class="stat-value">32</h3>
-                            <span class="stat-change neutral">0%</span>
+                            <h3 class="stat-value"><?= $teamcount['total'] ?></h3>
                         </div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-icon">💸</div>
                         <div class="stat-info">
-                            <p class="stat-label">Transferts (Mois)</p>
-                            <h3 class="stat-value">15</h3>
-                            <span class="stat-change negative">-3%</span>
+                            <p class="stat-label">Transferts</p>
+                            <h3 class="stat-value"><?= $transfercount['total'] ?></h3>
                         </div>
                     </div>
                 </div>
@@ -114,113 +117,96 @@ session_start();
                 <!-- Recent Transfers -->
                 <div class="section-card">
                     <div class="section-header">
-                        <h3>Derniers Transferts</h3>
-                        <a href="transfers.php" class="btn-link">Voir tout →</a>
+                        <h3>Derniers Joueurs Transferts</h3>
+                        <a href="transferr.php" class="btn-link">Voir tout →</a>
                     </div>
                     <div class="transfers-list">
+                        <?php foreach($listtransfer as $transfer) { ?>
                         <div class="transfer-item">
                             <div class="transfer-player">
-                                <div class="player-avatar">KR</div>
                                 <div>
-                                    <p class="player-name">Kennyy_S</p>
+                                    <p class="player-name"><?= $transfer['joueur'] ?></p>
                                     <p class="player-role">AWP - CS2</p>
                                 </div>
                             </div>
                             <div class="transfer-route">
-                                <span class="team-badge">G2</span>
+                                <span class="team-badge"><?= $transfer['equipe_depart'] ?></span>
                                 <span class="arrow">→</span>
-                                <span class="team-badge">Vitality</span>
+                                <span class="team-badge"><?= $transfer['equipe_arrivee'] ?></span>
                             </div>
-                            <div class="transfer-amount">850K €</div>
-                            <span class="status-badge completed">Complété</span>
+                            <div class="transfer-amount"><?= Formater::currency($transfer['montant']) ?></div>
+                            <?php
+                            $status_class = '';
+                            if(strtolower($transfer['statut']) === 'completed') {
+                                    $status_class = 'completed';
+                                    } elseif(strtolower($transfer['statut']) === 'in progress') {
+                                        $status_class = 'pending';
+                                    } elseif(strtolower($transfer['statut']) === 'canceled') {
+                                        $status_class = 'cancelled';
+                            }
+                            ?>
+                            <span class="status-badge <?= $status_class ?>"><?= $transfer['statut'] ?></span>
                         </div>
-
-                        <div class="transfer-item">
-                            <div class="transfer-player">
-                                <div class="player-avatar">FZ</div>
-                                <div>
-                                    <p class="player-name">Freeze</p>
-                                    <p class="player-role">Mid - LoL</p>
-                                </div>
-                            </div>
-                            <div class="transfer-route">
-                                <span class="team-badge">KC</span>
-                                <span class="arrow">→</span>
-                                <span class="team-badge">Fnatic</span>
-                            </div>
-                            <div class="transfer-amount">1.2M €</div>
-                            <span class="status-badge pending">En cours</span>
-                        </div>
-
-                        <div class="transfer-item">
-                            <div class="transfer-player">
-                                <div class="player-avatar">MX</div>
-                                <div>
-                                    <p class="player-name">Mixwell</p>
-                                    <p class="player-role">Rifler - Valorant</p>
-                                </div>
-                            </div>
-                            <div class="transfer-route">
-                                <span class="team-badge">Heretics</span>
-                                <span class="arrow">→</span>
-                                <span class="team-badge">G2</span>
-                            </div>
-                            <div class="transfer-amount">650K €</div>
-                            <span class="status-badge completed">Complété</span>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
+
+
+
+
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3>Derniers Coachs Transferts</h3>
+                        <a href="transferr.php" class="btn-link">Voir tout →</a>
+                    </div>
+                    <div class="transfers-list">
+                        <?php foreach($listcoachtransfer as $transfer) { ?>
+                        <div class="transfer-item">
+                            <div class="transfer-player">
+                                <div>
+                                    <p class="player-name"><?= $transfer['coach'] ?></p>
+                                </div>
+                            </div>
+                            <div class="transfer-route">
+                                <span class="team-badge"><?= $transfer['equipe_depart'] ?></span>
+                                <span class="arrow">→</span>
+                                <span class="team-badge"><?= $transfer['equipe_arrivee'] ?></span>
+                            </div>
+                            <?php
+                            $status_class = '';
+                            if(strtolower($transfer['statut']) === 'completed') {
+                                    $status_class = 'completed';
+                                    } elseif(strtolower($transfer['statut']) === 'in progress') {
+                                        $status_class = 'pending';
+                                    } elseif(strtolower($transfer['statut']) === 'canceled') {
+                                        $status_class = 'cancelled';
+                            }
+                            ?>
+                            <span class="status-badge <?= $status_class ?>"><?= $transfer['statut'] ?></span>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+
+
 
                 <!-- Top Players by Value -->
                 <div class="section-card">
                     <div class="section-header">
                         <h3>Top Joueurs - Valeur Marchande</h3>
-                        <a href="players.php" class="btn-link">Voir tout →</a>
+                        <a href="playerss.php" class="btn-link">Voir tout →</a>
                     </div>
                     <div class="players-grid">
+                        <?php foreach($playerslist as $player) { ?>
                         <div class="player-card">
                             <div class="player-header">
-                                <div class="player-avatar large">ZW</div>
-                                <div class="player-flag">🇫🇷</div>
+                                <div class="player-avatar large">PL</div>
                             </div>
-                            <h4 class="player-name">ZywOo</h4>
-                            <p class="player-position">AWP - CS2</p>
-                            <p class="player-team">Vitality</p>
-                            <div class="player-value">2.5M €</div>
+                            <h4 class="player-name"><?= $player['playername'] ?></h4>
+                            <p class="player-team"><?= $player['teamname'] ?></p>
+                            <div class="player-value"><?= Formater::currency($player['valeur_marchande']) ?></div>
                         </div>
-
-                        <div class="player-card">
-                            <div class="player-header">
-                                <div class="player-avatar large">CP</div>
-                                <div class="player-flag">🇰🇷</div>
-                            </div>
-                            <h4 class="player-name">Caps</h4>
-                            <p class="player-position">Mid - LoL</p>
-                            <p class="player-team">G2 Esports</p>
-                            <div class="player-value">2.2M €</div>
-                        </div>
-
-                        <div class="player-card">
-                            <div class="player-header">
-                                <div class="player-avatar large">TZ</div>
-                                <div class="player-flag">🇪🇸</div>
-                            </div>
-                            <h4 class="player-name">TenZ</h4>
-                            <p class="player-position">Duelist - Valorant</p>
-                            <p class="player-team">Sentinels</p>
-                            <div class="player-value">1.8M €</div>
-                        </div>
-
-                        <div class="player-card">
-                            <div class="player-header">
-                                <div class="player-avatar large">RK</div>
-                                <div class="player-flag">🇫🇷</div>
-                            </div>
-                            <h4 class="player-name">Rekkles</h4>
-                            <p class="player-position">ADC - LoL</p>
-                            <p class="player-team">Karmine Corp</p>
-                            <div class="player-value">1.6M €</div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

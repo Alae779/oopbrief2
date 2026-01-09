@@ -40,11 +40,11 @@ $listEquipe = Equipe::getAll();
                     <span class="icon">🏆</span>
                     <span>Équipes</span>
                 </a>
-                <a href="contracts.php" class="nav-item">
+                <a href="contratt.php" class="nav-item">
                     <span class="icon">📝</span>
                     <span>Contrats</span>
                 </a>
-                <a href="transfers.php" class="nav-item">
+                <a href="transferr.php" class="nav-item">
                     <span class="icon">💸</span>
                     <span>Transferts</span>
                 </a>
@@ -53,7 +53,7 @@ $listEquipe = Equipe::getAll();
             <div class="user-profile">
                 <div class="user-avatar">AD</div>
                 <div class="user-info">
-                    <p class="user-name">Journalist</p>
+                    <p class="user-name">Visitor</p>
                     <p class="user-role">Gestionnaire</p>
                 </div>
                 <div class="team-badge">
@@ -118,21 +118,6 @@ $listEquipe = Equipe::getAll();
                                     <span class="stat-text">Contrats</span>
                                 </div>
                             </div>
-
-                            <div class="team-roster">
-                                <p class="roster-label">Roster principal :</p>
-                                <div class="roster-avatars">
-                                    <div class="mini-avatar" title="Caps">CP</div>
-                                    <div class="mini-avatar" title="NiKo">NK</div>
-                                    <div class="mini-avatar" title="m0NESY">MN</div>
-                                    <div class="mini-avatar" title="HooXi">HX</div>
-                                    <div class="mini-avatar" title="huNter">HT</div>
-                                    <div class="mini-avatar-more">+10</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-footer">
-                            <button class="btn-team-action">👁️ Voir</button>
                         </div>
                     </div>
                     <?php } ?>
